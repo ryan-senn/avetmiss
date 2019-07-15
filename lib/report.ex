@@ -1,18 +1,20 @@
 defmodule Avetmiss.Report do
   import Avetmiss.Util
 
-  alias Avetmiss.Nat.Nat010
-  alias Avetmiss.Nat.Nat020
-  alias Avetmiss.Nat.Nat030
-  alias Avetmiss.Nat.Nat060
-  alias Avetmiss.Nat.Nat080
-  alias Avetmiss.Nat.Nat085
-  alias Avetmiss.Nat.Nat090
-  alias Avetmiss.Nat.Nat100
-  alias Avetmiss.Nat.Nat120
-  alias Avetmiss.Nat.Nat130
+  alias Avetmiss.Nat.{
+    Nat010,
+    Nat020,
+    Nat030,
+    Nat060,
+    Nat080,
+    Nat085,
+    Nat090,
+    Nat100,
+    Nat120,
+    Nat130
+  }
 
-  def nat010(%Nat010{} = data) do
+  def nat010_row(%Nat010{} = data) do
     [
       data.training_organisation_id |> length(10),
       data.training_organisation_name |> length(100),
@@ -21,9 +23,10 @@ defmodule Avetmiss.Report do
       data.facsimile_number |> length(20),
       data.email_address |> length(80)
     ]
+    |> Enum.join("")
   end
 
-  def nat020(%Nat020{} = data) do
+  def nat020_row(%Nat020{} = data) do
     [
       data.training_organisation_id |> length(10),
       data.training_organisation_delivery_location_id |> length(10),
@@ -33,17 +36,19 @@ defmodule Avetmiss.Report do
       data.address_location_suburb_locality_town |> length(50),
       data.country_id |> length(4)
     ]
+    |> Enum.join("")
   end
 
-  def nat030(%Nat030{} = data) do
+  def nat030_row(%Nat030{} = data) do
     [
       data.program_id |> length(10),
       data.program_name |> length(100),
       data.nominal_hours |> length(4)
     ]
+    |> Enum.join("")
   end
 
-  def nat060(%Nat060{} = data) do
+  def nat060_row(%Nat060{} = data) do
     [
       data.unit_display_id |> length(12),
       data.unit_name |> length(100),
@@ -51,9 +56,10 @@ defmodule Avetmiss.Report do
       data.vet_flag |> length(1),
       data.nominal_hours |> length(4)
     ]
+    |> Enum.join("")
   end
 
-  def nat080(%Nat080{} = data) do
+  def nat080_row(%Nat080{} = data) do
     [
       data.client_id |> length(10),
       data.name_for_encryption |> length(60),
@@ -79,9 +85,10 @@ defmodule Avetmiss.Report do
       data.statistical_area_level_1_id |> length(11),
       data.statistical_area_level_2_id |> length(9)
     ]
+    |> Enum.join("")
   end
 
-  def nat085(%Nat085{} = data) do
+  def nat085_row(%Nat085{} = data) do
     [
       data.client_id |> length(10),
       data.client_title |> length(4),
@@ -101,23 +108,26 @@ defmodule Avetmiss.Report do
       data.email_address |> length(80),
       data.email_address_alternative |> length(80)
     ]
+    |> Enum.join("")
   end
 
-  def nat090(%Nat090{} = data) do
+  def nat090_row(%Nat090{} = data) do
     [
       data.client_id |> length(10),
       data.disability_type_id |> length(2)
     ]
+    |> Enum.join("")
   end
 
-  def nat100(%Nat100{} = data) do
+  def nat100_row(%Nat100{} = data) do
     [
       data.client_id |> length(10),
       data.prior_education_achievement_id |> length(3)
     ]
+    |> Enum.join("")
   end
 
-  def nat120(%Nat120{} = data) do
+  def nat120_row(%Nat120{} = data) do
     [
       data.training_organisation_id |> length(10),
       data.training_organisation_delivery_location_id |> length(10),
@@ -147,9 +157,10 @@ defmodule Avetmiss.Report do
       data.scheduled_hours |> length(4),
       data.predominant_delivery_mode |> length(1)
     ]
+    |> Enum.join("")
   end
 
-  def nat130(%Nat130{} = data) do
+  def nat130_row(%Nat130{} = data) do
     [
       data.training_organisation_id |> length(10),
       data.program_id |> length(10),
@@ -159,19 +170,6 @@ defmodule Avetmiss.Report do
       data.parchment_issue_date |> length(8),
       data.parchment_number |> length(25)
     ]
-  end
-
-  def zip(destination, nat010, nat020, nat060, nat080, nat090, nat100, nat120) do
-    files = [
-      {'./nat00010.txt', nat010},
-      {'./nat00020.txt', nat020},
-      {'./nat00060.txt', nat060},
-      {'./nat00080.txt', nat080},
-      {'./nat00090.txt', nat090},
-      {'./nat00100.txt', nat100},
-      {'./nat00120.txt', nat120}
-    ]
-
-    :zip.create(destination <> "/report.zip", files)
+    |> Enum.join("")
   end
 end

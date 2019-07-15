@@ -35,6 +35,17 @@ defmodule Avetmiss.Util do
     |> Enum.join("")
   end
 
+  def date(%NaiveDateTime{} = date) do
+    [
+      date.day
+      |> pad_int(2),
+      date.month
+      |> pad_int(2),
+      date.year
+    ]
+    |> Enum.join("")
+  end
+
   def has_flag(items) when items == nil do
     ""
   end
@@ -67,5 +78,36 @@ defmodule Avetmiss.Util do
     int
     |> Integer.to_string()
     |> String.pad_leading(length, "0")
+  end
+
+  def state_code(state_name) do
+    case state_name do
+      "NSW" ->
+        1
+
+      "VIC" ->
+        2
+
+      "QLD" ->
+        3
+
+      "SA" ->
+        4
+
+      "WA" ->
+        5
+
+      "TAS" ->
+        6
+
+      "NT" ->
+        7
+
+      "ACT" ->
+        8
+
+      _ ->
+        ""
+    end
   end
 end

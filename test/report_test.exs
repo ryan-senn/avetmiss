@@ -3,19 +3,21 @@ defmodule Avetmiss.ReportTest do
 
   import Avetmiss.Util
 
-  alias Avetmiss.Nat.Nat010
-  alias Avetmiss.Nat.Nat020
-  alias Avetmiss.Nat.Nat030
-  alias Avetmiss.Nat.Nat060
-  alias Avetmiss.Nat.Nat080
-  alias Avetmiss.Nat.Nat085
-  alias Avetmiss.Nat.Nat090
-  alias Avetmiss.Nat.Nat100
-  alias Avetmiss.Nat.Nat120
-  alias Avetmiss.Nat.Nat130
+  alias Avetmiss.Nat.{
+    Nat010,
+    Nat020,
+    Nat030,
+    Nat060,
+    Nat080,
+    Nat085,
+    Nat090,
+    Nat100,
+    Nat120,
+    Nat130
+  }
 
   test "nat010 - test fields" do
-    assert Avetmiss.Report.nat010(%Nat010{
+    assert Avetmiss.Report.nat010_row(%Nat010{
              training_organisation_id: "foo",
              training_organisation_name: "bar",
              contact_name: "baz",
@@ -31,10 +33,11 @@ defmodule Avetmiss.ReportTest do
                "quux                ",
                "quuz                                                                            "
              ]
+             |> Enum.join("")
   end
 
   test "nat020 - test fields" do
-    assert Avetmiss.Report.nat020(%Nat020{
+    assert Avetmiss.Report.nat020_row(%Nat020{
              training_organisation_id: "foo",
              training_organisation_delivery_location_id: "bar",
              training_organisation_delivery_location_name: "baz",
@@ -52,10 +55,11 @@ defmodule Avetmiss.ReportTest do
                "quuz                                              ",
                "101 "
              ]
+             |> Enum.join("")
   end
 
   test "nat030 - test fields" do
-    assert Avetmiss.Report.nat030(%Nat030{
+    assert Avetmiss.Report.nat030_row(%Nat030{
              program_id: "foo",
              program_name: "bar",
              nominal_hours: 23
@@ -65,10 +69,11 @@ defmodule Avetmiss.ReportTest do
                "bar                                                                                                 ",
                "23  "
              ]
+             |> Enum.join("")
   end
 
   test "nat060 - test fields" do
-    assert Avetmiss.Report.nat060(%Nat060{
+    assert Avetmiss.Report.nat060_row(%Nat060{
              unit_display_id: "foo",
              unit_name: "bar",
              module_field_of_education_id: 324,
@@ -82,10 +87,11 @@ defmodule Avetmiss.ReportTest do
                "Y",
                "115 "
              ]
+             |> Enum.join("")
   end
 
   test "nat080 - test fields" do
-    assert Avetmiss.Report.nat080(%Nat080{
+    assert Avetmiss.Report.nat080_row(%Nat080{
              client_id: "foo",
              name_for_encryption: name_for_encryption("Foo", "Bar"),
              highest_school_level_completed_id: 9,
@@ -135,10 +141,11 @@ defmodule Avetmiss.ReportTest do
                "3          ",
                "4        "
              ]
+             |> Enum.join("")
   end
 
   test "nat085 - test fields" do
-    assert Avetmiss.Report.nat085(%Nat085{
+    assert Avetmiss.Report.nat085_row(%Nat085{
              client_id: "foo",
              client_title: "Mrs",
              client_first_given_name: "foo",
@@ -176,10 +183,11 @@ defmodule Avetmiss.ReportTest do
                "foobar@bar.baz                                                                  ",
                "foobar@bar.baz                                                                  "
              ]
+             |> Enum.join("")
   end
 
   test "nat090 - test fields" do
-    assert Avetmiss.Report.nat090(%Nat090{
+    assert Avetmiss.Report.nat090_row(%Nat090{
              client_id: "foo",
              disability_type_id: "11"
            }) ==
@@ -187,10 +195,11 @@ defmodule Avetmiss.ReportTest do
                "foo       ",
                "11"
              ]
+             |> Enum.join("")
   end
 
   test "nat100 - test fields" do
-    assert Avetmiss.Report.nat100(%Nat100{
+    assert Avetmiss.Report.nat100_row(%Nat100{
              client_id: "foo",
              prior_education_achievement_id: "410"
            }) ==
@@ -198,10 +207,11 @@ defmodule Avetmiss.ReportTest do
                "foo       ",
                "410"
              ]
+             |> Enum.join("")
   end
 
   test "nat120 - test fields" do
-    assert Avetmiss.Report.nat120(%Nat120{
+    assert Avetmiss.Report.nat120_row(%Nat120{
              training_organisation_id: "foo",
              training_organisation_delivery_location_id: "bar",
              client_id: "baz",
@@ -259,10 +269,11 @@ defmodule Avetmiss.ReportTest do
                "420 ",
                "2"
              ]
+             |> Enum.join("")
   end
 
   test "nat130 - test fields" do
-    assert Avetmiss.Report.nat130(%Nat130{
+    assert Avetmiss.Report.nat130_row(%Nat130{
              training_organisation_id: "foo",
              program_id: "bar",
              client_id: "baz",
@@ -280,5 +291,6 @@ defmodule Avetmiss.ReportTest do
                "11052019",
                "12                       "
              ]
+             |> Enum.join("")
   end
 end

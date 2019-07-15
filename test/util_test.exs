@@ -21,8 +21,12 @@ defmodule Avetmiss.UtilTest do
     assert name_for_encryption("foo", "bar") == "bar, foo"
   end
 
-  test "date formats string properly" do
+  test "date formats %Date{} properly" do
     assert date(~D[2019-06-10]) == "10062019"
+  end
+
+  test "date formats %NaiveDateTime{} properly" do
+    assert date(~N[2019-06-12 04:28:14.000000]) == "12062019"
   end
 
   test "date returns nil as empty string" do
