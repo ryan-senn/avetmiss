@@ -18,11 +18,11 @@ defmodule Avetmiss.UtilTest do
   end
 
   test "name_for_encryption encodes single name as last name" do
-    assert name_for_encryption("foo") == "foo, "
+    assert name_for_encryption({"first", ""}) == "first, "
   end
 
   test "name_for_encryption encodes first and last name properly" do
-    assert name_for_encryption("foo", "bar") == "bar, foo"
+    assert name_for_encryption({"first", "last"}) == "last, first"
   end
 
   test "date returns empty string for nil" do

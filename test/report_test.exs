@@ -1,8 +1,6 @@
 defmodule Avetmiss.ReportTest do
   use ExUnit.Case
 
-  import Avetmiss.Util
-
   alias Avetmiss.Nat.{
     Nat010,
     Nat020,
@@ -93,7 +91,7 @@ defmodule Avetmiss.ReportTest do
   test "nat080 - test fields" do
     assert Avetmiss.Report.nat080_row(%Nat080{
              client_id: "foo",
-             name_for_encryption: name_for_encryption("Foo", "Bar"),
+             name_for_encryption: {"Foo", "Bar"},
              highest_school_level_completed_id: 9,
              gender: 1,
              date_of_birth: ~D[1995-06-26],

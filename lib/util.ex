@@ -13,9 +13,11 @@ defmodule Avetmiss.Util do
     end
   end
 
-  def name_for_encryption(first_name, last_name), do: "#{last_name}, #{first_name}"
   # if the user has a single name, report it as the last name
-  def name_for_encryption(name), do: "#{name}, "
+  def name_for_encryption({name, nil}), do: "#{name}, "
+  def name_for_encryption({name, ""}), do: "#{name}, "
+
+  def name_for_encryption({first_name, last_name}), do: "#{last_name}, #{first_name}"
 
   def date(nil), do: ""
   def date(""), do: ""

@@ -64,7 +64,7 @@ defmodule Avetmiss.Report do
   def nat080_row(%Nat080{} = data) do
     [
       data.client_id |> length(10),
-      data.name_for_encryption |> length(60),
+      data.name_for_encryption |> name_for_encryption() |> length(60),
       data.highest_school_level_completed_id |> length(2),
       data.gender |> length(1),
       data.date_of_birth |> date() |> length(8),

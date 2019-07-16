@@ -3,7 +3,7 @@ defmodule Avetmiss.Nat.Nat080 do
 
   typedstruct do
     field :client_id, String.t(), enforce: true
-    field :name_for_encryption, String.t(), enforce: true
+    field :name_for_encryption, {String.t(), String.t()}, enforce: true
     field :highest_school_level_completed_id, String.t(), enforce: true
     field :gender, String.t(), enforce: true
     field :date_of_birth, String.t(), enforce: true
