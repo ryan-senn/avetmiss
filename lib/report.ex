@@ -1,6 +1,8 @@
 defmodule Avetmiss.Report do
   import Avetmiss.Util
 
+  alias Avetmiss.Config
+
   alias Avetmiss.Nat.{
     Nat010,
     Nat020,
@@ -53,7 +55,7 @@ defmodule Avetmiss.Report do
       data.unit_display_id |> length(12),
       data.unit_name |> length(100),
       data.module_field_of_education_id |> length(6),
-      data.vet_flag |> length(1),
+      data.vet_flag |> bool_flag() |> length(1),
       data.nominal_hours |> length(4)
     ]
     |> Enum.join("")
@@ -65,15 +67,15 @@ defmodule Avetmiss.Report do
       data.name_for_encryption |> length(60),
       data.highest_school_level_completed_id |> length(2),
       data.gender |> length(1),
-      data.date_of_birth |> length(8),
+      data.date_of_birth |> date() |> length(8),
       data.postcode |> length(4),
-      data.indigenous_status_id |> length(1),
+      data.indigenous_status_id |> in_config(Config.indigenous_statuses()) |> length(1),
       data.language_id |> length(4),
       data.labour_force_status_id |> length(2),
       data.country_id |> length(4),
-      data.disability_flag |> length(1),
-      data.prior_educational_achievement_flag |> length(1),
-      data.at_school_flag |> length(1),
+      data.disability_flag |> has_flag() |> length(1),
+      data.prior_educational_achievement_flag |> has_flag() |> length(1),
+      data.at_school_flag |> bool_flag() |> length(1),
       data.address_location_suburb_locality_or_town |> length(50),
       data.unique_student_id |> length(10),
       data.state_id |> length(2),
@@ -134,8 +136,8 @@ defmodule Avetmiss.Report do
       data.client_id |> length(10),
       data.subject_id |> length(12),
       data.program_id |> length(10),
-      data.activity_start_date |> length(8),
-      data.activity_end_date |> length(8),
+      data.activity_start_date |> date() |> length(8),
+      data.activity_end_date |> date() |> length(8),
       data.delivery_mode_id |> length(3),
       data.outcome_id_national |> length(2),
       data.funding_source_national |> length(2),
@@ -143,7 +145,7 @@ defmodule Avetmiss.Report do
       data.training_contract_id |> length(10),
       data.client_id_apprenticeships |> length(10),
       data.study_reason_id |> length(2),
-      data.vet_in_schools_flag |> length(1),
+      data.vet_in_schools_flag |> bool_flag() |> length(1),
       data.specific_funding_id |> length(10),
       data.school_type_identifier |> length(2),
       data.outcome_id_training_organisation |> length(3),
@@ -165,9 +167,9 @@ defmodule Avetmiss.Report do
       data.training_organisation_id |> length(10),
       data.program_id |> length(10),
       data.client_id |> length(10),
-      data.date_program_completed |> length(8),
-      data.issued_flag |> length(1),
-      data.parchment_issue_date |> length(8),
+      data.date_program_completed |> date() |> length(8),
+      data.issued_flag |> bool_flag() |> length(1),
+      data.parchment_issue_date |> date() |> length(8),
       data.parchment_number |> length(25)
     ]
     |> Enum.join("")

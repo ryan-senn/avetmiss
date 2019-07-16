@@ -3,12 +3,16 @@ defmodule Avetmiss.UtilTest do
 
   import Avetmiss.Util
 
+  alias Avetmiss.Config
+
+  alias Avetmiss.Errors.{LengthError, DateError, ConfigError, FlagError}
+
   test "length pads with spaces" do
     assert length("foo", 10) == "foo       "
   end
 
-  test "length raises exception if string is too long" do
-    assert_raise RuntimeError, "String exceeds permitted length", fn ->
+  test "length raises LengthError if string is too long" do
+    assert_raise LengthError, fn ->
       length("foobarfoobar", 10)
     end
   end
@@ -21,6 +25,14 @@ defmodule Avetmiss.UtilTest do
     assert name_for_encryption("foo", "bar") == "bar, foo"
   end
 
+  test "date returns empty string for nil" do
+    assert date(nil) == ""
+  end
+
+  test "date returns empty string for empty string" do
+    assert date("") == ""
+  end
+
   test "date formats %Date{} properly" do
     assert date(~D[2019-06-10]) == "10062019"
   end
@@ -29,8 +41,42 @@ defmodule Avetmiss.UtilTest do
     assert date(~N[2019-06-12 04:28:14.000000]) == "12062019"
   end
 
-  test "date returns nil as empty string" do
-    assert date(nil) == ""
+  test "date formats iso8601 string properly" do
+    assert date("2019-06-10") == "10062019"
+  end
+
+  test "date returns unchanged date if already in AVETMISS format" do
+    assert date("10062019") == "10062019"
+  end
+
+  test "date raises DateError if invalid value given" do
+    assert_raise DateError, fn ->
+      date("jsdf")
+    end
+  end
+
+  test "has_flag returns empty string for nil" do
+    assert has_flag(nil) == ""
+  end
+
+  test "has_flag returns empty string for empty string" do
+    assert has_flag("") == ""
+  end
+
+  test "has_flag returns Y for true" do
+    assert has_flag(true) == "Y"
+  end
+
+  test "has_flag returns N for false" do
+    assert has_flag(false) == "N"
+  end
+
+  test "has_flag returns Y for Y" do
+    assert has_flag("Y") == "Y"
+  end
+
+  test "has_flag returns N for N" do
+    assert has_flag("N") == "N"
   end
 
   test "has_flag returns Y if there are items" do
@@ -41,8 +87,12 @@ defmodule Avetmiss.UtilTest do
     assert has_flag([]) == "N"
   end
 
-  test "has_flag returns empty string for nil" do
-    assert has_flag(nil) == ""
+  test "bool_flag returns empty string for nil" do
+    assert bool_flag(nil) == ""
+  end
+
+  test "bool_flag returns empty string for empty string" do
+    assert bool_flag("") == ""
   end
 
   test "bool_flag returns Y for true" do
@@ -53,8 +103,18 @@ defmodule Avetmiss.UtilTest do
     assert bool_flag(false) == "N"
   end
 
-  test "bool_flag returns empty string for nil" do
-    assert bool_flag(nil) == ""
+  test "bool_flag returns Y for Y" do
+    assert bool_flag("Y") == "Y"
+  end
+
+  test "bool_flag returns N for N" do
+    assert bool_flag("N") == "N"
+  end
+
+  test "bool_flag raises FlagError for invalid flag" do
+    assert_raise FlagError, fn ->
+      bool_flag("sdfsfd")
+    end
   end
 
   test "pad_int adds leading zeros" do
@@ -63,5 +123,15 @@ defmodule Avetmiss.UtilTest do
 
   test "pad_int returns empty string when nil" do
     assert pad_int(nil, 4) == ""
+  end
+
+  test "in_config returns key if key exists in config" do
+    assert in_config(2, Config.indigenous_statuses()) == 2
+  end
+
+  test "in_config raises ConfigError if invalid" do
+    assert_raise ConfigError, fn ->
+      in_config(10, Config.indigenous_statuses())
+    end
   end
 end

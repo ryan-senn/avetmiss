@@ -7,8 +7,8 @@ defmodule Avetmiss.Nat.Nat120 do
     field :client_id, String.t(), enforce: true
     field :subject_id, String.t(), enforce: true
     field :program_id, String.t(), enforce: true
-    field :activity_start_date, String.t(), enforce: true
-    field :activity_end_date, String.t(), enforce: true
+    field :activity_start_date, Date.t() | NaiveDateTime.t(), enforce: true
+    field :activity_end_date, Date.t() | NaiveDateTime.t(), enforce: true
     field :delivery_mode_id, String.t(), enforce: true
     field :outcome_id_national, String.t(), enforce: true
     field :funding_source_national, String.t(), enforce: true
@@ -16,7 +16,7 @@ defmodule Avetmiss.Nat.Nat120 do
     field :training_contract_id, String.t(), enforce: true
     field :client_id_apprenticeships, String.t(), enforce: true
     field :study_reason_id, String.t(), enforce: true
-    field :vet_in_schools_flag, String.t(), enforce: true
+    field :vet_in_schools_flag, boolean() | String.t(), enforce: true
     field :specific_funding_id, String.t(), enforce: true
     field :school_type_identifier, String.t(), enforce: true
     field :outcome_id_training_organisation, String.t(), enforce: true

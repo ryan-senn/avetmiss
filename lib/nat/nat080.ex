@@ -12,9 +12,9 @@ defmodule Avetmiss.Nat.Nat080 do
     field :language_id, String.t(), enforce: true
     field :labour_force_status_id, String.t(), enforce: true
     field :country_id, String.t(), enforce: true
-    field :disability_flag, String.t(), enforce: true
+    field :disability_flag, boolean() | String.t(), enforce: true
     field :prior_educational_achievement_flag, String.t(), enforce: true
-    field :at_school_flag, String.t(), enforce: true
+    field :at_school_flag, boolean() | String.t(), enforce: true
     field :address_location_suburb_locality_or_town, String.t(), enforce: true
     field :unique_student_id, String.t(), enforce: true
     field :state_id, String.t(), enforce: true
