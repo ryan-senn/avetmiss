@@ -1,6 +1,8 @@
 defmodule Avetmiss.ReportTest do
   use ExUnit.Case
 
+  import Avetmiss.Report
+
   alias Avetmiss.Nat.{
     Nat010,
     Nat020,
@@ -15,7 +17,7 @@ defmodule Avetmiss.ReportTest do
   }
 
   test "nat010 - test fields" do
-    assert Avetmiss.Report.nat010_row(%Nat010{
+    assert nat010_row(%Nat010{
              training_organisation_id: "foo",
              training_organisation_name: "bar",
              contact_name: "baz",
@@ -35,7 +37,7 @@ defmodule Avetmiss.ReportTest do
   end
 
   test "nat020 - test fields" do
-    assert Avetmiss.Report.nat020_row(%Nat020{
+    assert nat020_row(%Nat020{
              training_organisation_id: "foo",
              training_organisation_delivery_location_id: "bar",
              training_organisation_delivery_location_name: "baz",
@@ -57,7 +59,7 @@ defmodule Avetmiss.ReportTest do
   end
 
   test "nat030 - test fields" do
-    assert Avetmiss.Report.nat030_row(%Nat030{
+    assert nat030_row(%Nat030{
              program_id: "foo",
              program_name: "bar",
              nominal_hours: 23
@@ -71,7 +73,7 @@ defmodule Avetmiss.ReportTest do
   end
 
   test "nat060 - test fields" do
-    assert Avetmiss.Report.nat060_row(%Nat060{
+    assert nat060_row(%Nat060{
              unit_display_id: "foo",
              unit_name: "bar",
              module_field_of_education_id: 324,
@@ -89,7 +91,7 @@ defmodule Avetmiss.ReportTest do
   end
 
   test "nat080 - test fields" do
-    assert Avetmiss.Report.nat080_row(%Nat080{
+    assert nat080_row(%Nat080{
              client_id: "foo",
              name_for_encryption: {"Foo", "Bar"},
              highest_school_level_completed_id: 9,
@@ -143,7 +145,7 @@ defmodule Avetmiss.ReportTest do
   end
 
   test "nat085 - test fields" do
-    assert Avetmiss.Report.nat085_row(%Nat085{
+    assert nat085_row(%Nat085{
              client_id: "foo",
              client_title: "Mrs",
              client_first_given_name: "foo",
@@ -185,7 +187,7 @@ defmodule Avetmiss.ReportTest do
   end
 
   test "nat090 - test fields" do
-    assert Avetmiss.Report.nat090_row(%Nat090{
+    assert nat090_row(%Nat090{
              client_id: "foo",
              disability_type_id: "11"
            }) ==
@@ -197,7 +199,7 @@ defmodule Avetmiss.ReportTest do
   end
 
   test "nat100 - test fields" do
-    assert Avetmiss.Report.nat100_row(%Nat100{
+    assert nat100_row(%Nat100{
              client_id: "foo",
              prior_education_achievement_id: "410"
            }) ==
@@ -209,7 +211,7 @@ defmodule Avetmiss.ReportTest do
   end
 
   test "nat120 - test fields" do
-    assert Avetmiss.Report.nat120_row(%Nat120{
+    assert nat120_row(%Nat120{
              training_organisation_id: "foo",
              training_organisation_delivery_location_id: "bar",
              client_id: "baz",
@@ -271,7 +273,7 @@ defmodule Avetmiss.ReportTest do
   end
 
   test "nat130 - test fields" do
-    assert Avetmiss.Report.nat130_row(%Nat130{
+    assert nat130_row(%Nat130{
              training_organisation_id: "foo",
              program_id: "bar",
              client_id: "baz",
