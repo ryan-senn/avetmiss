@@ -1,4 +1,17 @@
 defmodule Avetmiss.Config do
+  def states() do
+    [
+      {1, "NSW"},
+      {2, "VIC"},
+      {3, "QLD"},
+      {4, "SA"},
+      {5, "WA"},
+      {6, "TAS"},
+      {7, "NT"},
+      {8, "ACT"}
+    ]
+  end
+
   def genders() do
     [
       {1, "Male"},

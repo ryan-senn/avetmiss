@@ -34,7 +34,7 @@ defmodule Avetmiss.Report do
       data.training_organisation_delivery_location_id |> length(10),
       data.training_organisation_delivery_location_name |> length(100),
       data.postcode |> length(4),
-      data.state_id |> pad_int(2) |> length(2),
+      data.state_id |> state_code() |> pad_int(2) |> length(2),
       data.address_location_suburb_locality_town |> length(50),
       data.country_id |> length(4)
     ]
@@ -78,7 +78,7 @@ defmodule Avetmiss.Report do
       data.at_school_flag |> bool_flag() |> length(1),
       data.address_location_suburb_locality_or_town |> length(50),
       data.unique_student_id |> length(10),
-      data.state_id |> length(2),
+      data.state_id |> state_code() |> pad_int(2) |> length(2),
       data.address_building_property_name |> length(50),
       data.address_flat_unit_details |> length(30),
       data.address_street_number |> length(15),
@@ -103,7 +103,7 @@ defmodule Avetmiss.Report do
       data.address_postal_delivery_box |> length(22),
       data.address_postal_suburb_locality_town |> length(50),
       data.postcode |> length(4),
-      data.state_id |> length(2),
+      data.state_id |> state_code() |> pad_int(2) |> length(2),
       data.telephone_number_home |> length(20),
       data.telephone_number_work |> length(20),
       data.telephone_number_mobile |> length(20),

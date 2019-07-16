@@ -5,7 +5,7 @@ defmodule Avetmiss.UtilTest do
 
   alias Avetmiss.Config
 
-  alias Avetmiss.Errors.{LengthError, DateError, ConfigError, FlagError}
+  alias Avetmiss.Errors.{LengthError, DateError, ConfigError, FlagError, StateError}
 
   test "length pads with spaces" do
     assert length("foo", 10) == "foo       "
@@ -132,6 +132,28 @@ defmodule Avetmiss.UtilTest do
   test "in_config raises ConfigError if invalid" do
     assert_raise ConfigError, fn ->
       in_config(10, Config.indigenous_statuses())
+    end
+  end
+
+  test "state_code returns empty string for nil" do
+    assert state_code(nil) == ""
+  end
+
+  test "state_code returns empty string for empty string" do
+    assert state_code("") == ""
+  end
+
+  test "state_code returns code for string value if valid" do
+    assert state_code("QLD") == 3
+  end
+
+  test "state_code returns existing code if valid" do
+    assert state_code(2) == 2
+  end
+
+  test "state_code raises StateError if not valid" do
+    assert_raise StateError, fn ->
+      state_code("54")
     end
   end
 end

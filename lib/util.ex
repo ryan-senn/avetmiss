@@ -1,5 +1,6 @@
 defmodule Avetmiss.Util do
-  alias Avetmiss.Errors.{LengthError, DateError, ConfigError, FlagError}
+  alias Avetmiss.Config
+  alias Avetmiss.Errors.{LengthError, DateError, ConfigError, FlagError, StateError}
 
   def length(string, length) do
     string = to_string(string)
@@ -91,34 +92,30 @@ defmodule Avetmiss.Util do
     if is_valid?, do: key, else: raise(ConfigError)
   end
 
-  def state_code(state_name) do
-    case state_name do
-      "NSW" ->
-        1
+  def state_code(nil), do: ""
+  def state_code(""), do: ""
 
-      "VIC" ->
-        2
+  def state_code(value) do
+    valid_code? =
+      Config.states()
+      |> Enum.map(fn {code, _} -> code end)
+      |> Enum.member?(value)
 
-      "QLD" ->
-        3
+    if valid_code? do
+      value
+    else
+      code =
+        Config.states()
+        |> Enum.reduce([], fn {code, name}, acc ->
+          if String.downcase(name) == String.downcase(value), do: [code] ++ acc, else: acc
+        end)
+        |> Enum.at(0)
 
-      "SA" ->
-        4
-
-      "WA" ->
-        5
-
-      "TAS" ->
-        6
-
-      "NT" ->
-        7
-
-      "ACT" ->
-        8
-
-      _ ->
-        ""
+      if code != nil do
+        code
+      else
+        raise(StateError)
+      end
     end
   end
 end
