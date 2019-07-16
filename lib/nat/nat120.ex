@@ -18,7 +18,7 @@ defmodule Avetmiss.Nat.Nat120 do
     field :study_reason_id, String.t(), enforce: true
     field :vet_in_schools_flag, boolean() | String.t(), enforce: true
     field :specific_funding_id, String.t(), enforce: true
-    field :school_type_identifier, String.t(), enforce: true
+    field :school_type_id, String.t(), enforce: true
     field :outcome_id_training_organisation, String.t(), enforce: true
     field :funding_source_state_training_authority, String.t(), enforce: true
     field :client_tuition_fee, String.t(), enforce: true

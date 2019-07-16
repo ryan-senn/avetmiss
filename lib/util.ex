@@ -83,6 +83,9 @@ defmodule Avetmiss.Util do
 
   # the order is bit counter intuitive, normally we'd go (Enum, key),
   # but this way makes it more pipe-able as we get the key passed down the chain
+  def in_config(nil, _), do: ""
+  def in_config("", _), do: ""
+
   def in_config(key, config) do
     is_valid? =
       config

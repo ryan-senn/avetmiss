@@ -71,7 +71,7 @@ defmodule Avetmiss.Report do
       data.postcode |> length(4),
       data.indigenous_status_id |> in_config(Config.indigenous_statuses()) |> length(1),
       data.language_id |> length(4),
-      data.labour_force_status_id |> length(2),
+      data.labour_force_status_id |> in_config(Config.employment_statuses()) |> length(2),
       data.country_id |> length(4),
       data.disability_flag |> has_flag() |> length(1),
       data.prior_educational_achievement_flag |> has_flag() |> length(1),
@@ -116,7 +116,7 @@ defmodule Avetmiss.Report do
   def nat090_row(%Nat090{} = data) do
     [
       data.client_id |> length(10),
-      data.disability_type_id |> length(2)
+      data.disability_type_id |> in_config(Config.disabilities()) |> length(2)
     ]
     |> Enum.join("")
   end
@@ -124,7 +124,7 @@ defmodule Avetmiss.Report do
   def nat100_row(%Nat100{} = data) do
     [
       data.client_id |> length(10),
-      data.prior_education_achievement_id |> length(3)
+      data.prior_education_achievement_id |> in_config(Config.qualifications()) |> length(3)
     ]
     |> Enum.join("")
   end
@@ -144,10 +144,10 @@ defmodule Avetmiss.Report do
       data.commencing_program_id |> length(1),
       data.training_contract_id |> length(10),
       data.client_id_apprenticeships |> length(10),
-      data.study_reason_id |> length(2),
+      data.study_reason_id |> in_config(Config.study_reasons()) |> length(2),
       data.vet_in_schools_flag |> bool_flag() |> length(1),
       data.specific_funding_id |> length(10),
-      data.school_type_identifier |> length(2),
+      data.school_type_id |> length(2),
       data.outcome_id_training_organisation |> length(3),
       data.funding_source_state_training_authority |> length(3),
       data.client_tuition_fee |> length(5),

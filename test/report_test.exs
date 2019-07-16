@@ -189,7 +189,7 @@ defmodule Avetmiss.ReportTest do
   test "nat090 - test fields" do
     assert nat090_row(%Nat090{
              client_id: "foo",
-             disability_type_id: "11"
+             disability_type_id: 11
            }) ==
              [
                "foo       ",
@@ -201,7 +201,7 @@ defmodule Avetmiss.ReportTest do
   test "nat100 - test fields" do
     assert nat100_row(%Nat100{
              client_id: "foo",
-             prior_education_achievement_id: "410"
+             prior_education_achievement_id: 410
            }) ==
              [
                "foo       ",
@@ -228,7 +228,7 @@ defmodule Avetmiss.ReportTest do
              study_reason_id: 13,
              vet_in_schools_flag: false,
              specific_funding_id: "23",
-             school_type_identifier: "6",
+             school_type_id: "6",
              outcome_id_training_organisation: "36",
              funding_source_state_training_authority: "43",
              client_tuition_fee: "66",

@@ -125,6 +125,14 @@ defmodule Avetmiss.UtilTest do
     assert pad_int(nil, 4) == ""
   end
 
+  test "in_config returns empty string for nil" do
+    assert in_config(nil, Config.indigenous_statuses()) == ""
+  end
+
+  test "in_config returns empty string for empty string" do
+    assert in_config("", Config.indigenous_statuses()) == ""
+  end
+
   test "in_config returns key if key exists in config" do
     assert in_config(2, Config.indigenous_statuses()) == 2
   end
