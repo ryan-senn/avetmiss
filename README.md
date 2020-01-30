@@ -82,3 +82,5 @@ If you've never heard of it, you porbbaly don't need this libary.
 AVETMISS is an acronym that stands for Australian Vocational Education and Training Management Information Statistical Standard.
 Most Registered Training Organisations (RTOs) have to generate and submit AVETMISS reports for statistical purpose and for caliming funding. 
 This library helps you to do so in Elixir. It defines a simple API based on Structs, and does all the formatting, validating etc. for you.
+
+To find out more, read: https://rtoadvisors.com.au/articles/what-is-avetmiss
