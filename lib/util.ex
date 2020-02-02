@@ -7,7 +7,7 @@ defmodule Avetmiss.Util do
 
     cond do
       String.length(string) > length ->
-        raise LengthError
+        raise LengthError, {length, string}
 
       true ->
         String.pad_trailing(string, length, " ")
@@ -39,7 +39,7 @@ defmodule Avetmiss.Util do
 
         case Date.from_iso8601(iso8601) do
           {:ok, date} -> fomat_date(date)
-          {:error, _} -> raise DateError
+          {:error, _} -> raise DateError, value
         end
     end
   end
@@ -69,7 +69,7 @@ defmodule Avetmiss.Util do
   def bool_flag(false), do: "N"
   def bool_flag("Y"), do: "Y"
   def bool_flag("N"), do: "N"
-  def bool_flag(_), do: raise(FlagError)
+  def bool_flag(value), do: raise FlagError, value
 
   def pad_int(int, _) when int == nil do
     ""
@@ -92,7 +92,7 @@ defmodule Avetmiss.Util do
       |> Enum.map(fn {k, _} -> k end)
       |> Enum.member?(key)
 
-    if is_valid?, do: key, else: raise(ConfigError)
+    if is_valid?, do: key, else: raise ConfigError, {config, key}
   end
 
   def state_code(nil), do: ""
@@ -117,7 +117,7 @@ defmodule Avetmiss.Util do
       if code != nil do
         code
       else
-        raise(StateError)
+        raise StateError, value
       end
     end
   end
