@@ -8,7 +8,8 @@ defmodule Avetmiss.Config do
       {5, "WA"},
       {6, "TAS"},
       {7, "NT"},
-      {8, "ACT"}
+      {8, "ACT"},
+      {99, "Other (overseas but not an Australian territory or dependency)"}
     ]
   end
 
