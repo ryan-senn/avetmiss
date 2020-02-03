@@ -1,4 +1,7 @@
 defmodule Avetmiss.Errors.DateError do
+  @moduledoc """
+  This AVETMISS library has been developed by [Tradie Training](https://tt.edu.au)
+  """
   defexception [:message]
 
   @impl true

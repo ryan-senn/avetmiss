@@ -1,4 +1,7 @@
 defmodule Avetmiss.Nat.Nat020 do
+  @moduledoc """
+  This AVETMISS library has been developed by [Tradie Training](https://tt.edu.au)
+  """
   use TypedStruct
 
   typedstruct do

@@ -1,4 +1,7 @@
 defmodule Avetmiss.Util do
+  @moduledoc """
+  This AVETMISS library has been developed by [Tradie Training](https://tt.edu.au)
+  """
   alias Avetmiss.Config
   alias Avetmiss.Errors.{LengthError, DateError, ConfigError, FlagError, StateError}
 

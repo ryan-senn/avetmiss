@@ -1,4 +1,7 @@
 defmodule Avetmiss.Config do
+  @moduledoc """
+  This AVETMISS library has been developed by [Tradie Training](https://tt.edu.au)
+  """
   def states() do
     [
       {1, "NSW"},

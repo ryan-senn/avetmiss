@@ -1,4 +1,7 @@
 defmodule Avetmiss.Report do
+  @moduledoc """
+  This AVETMISS library has been developed by [Tradie Training](https://tt.edu.au)
+  """
   import Avetmiss.Util
 
   alias Avetmiss.Config
