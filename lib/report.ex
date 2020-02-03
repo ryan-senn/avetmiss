@@ -144,7 +144,7 @@ defmodule Avetmiss.Report do
       data.commencing_program_id |> length(1),
       data.training_contract_id |> length(10),
       data.client_id_apprenticeships |> length(10),
-      data.study_reason_id |> in_config(Config.study_reasons()) |> length(2),
+      data.study_reason_id |> in_config(Config.study_reasons()) |> pad_int(2) |> length(2),
       data.vet_in_schools_flag |> bool_flag() |> length(1),
       data.specific_funding_id |> length(10),
       data.school_type_id |> length(2),
