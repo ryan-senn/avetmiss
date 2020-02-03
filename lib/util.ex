@@ -122,6 +122,14 @@ defmodule Avetmiss.Util do
     end
   end
 
+  def gender_flag(key) do
+    case key do
+      1 -> "M"
+      2 -> "F"
+      3 -> "@"
+    end
+  end
+
   def combine(fields) do
     fields
     |> Enum.map(fn field -> WordSmith.remove_accents(field) end)

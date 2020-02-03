@@ -66,12 +66,12 @@ defmodule Avetmiss.Report do
       data.client_id |> length(10),
       data.name_for_encryption |> name_for_encryption() |> length(60),
       data.highest_school_level_completed_id |> length(2),
-      data.gender |> length(1),
+      data.gender |> in_config(Config.genders()) |> gender_flag() |> length(1),
       data.date_of_birth |> date() |> length(8),
       data.postcode |> length(4),
       data.indigenous_status_id |> in_config(Config.indigenous_statuses()) |> length(1),
       data.language_id |> length(4),
-      data.labour_force_status_id |> in_config(Config.employment_statuses()) |> length(2),
+      data.labour_force_status_id |> in_config(Config.employment_statuses()) |> pad_int(2) |> length(2),
       data.country_id |> length(4),
       data.disability_flag |> has_flag() |> length(1),
       data.prior_educational_achievement_flag |> has_flag() |> length(1),
@@ -116,7 +116,7 @@ defmodule Avetmiss.Report do
   def nat090_row(%Nat090{} = data) do
     [
       data.client_id |> length(10),
-      data.disability_type_id |> in_config(Config.disabilities()) |> length(2)
+      data.disability_type_id |> in_config(Config.disabilities()) |> pad_int(2) |> length(2)
     ]
     |> combine()
   end
@@ -124,7 +124,7 @@ defmodule Avetmiss.Report do
   def nat100_row(%Nat100{} = data) do
     [
       data.client_id |> length(10),
-      data.prior_education_achievement_id |> in_config(Config.qualifications()) |> length(3)
+      data.prior_education_achievement_id |> in_config(Config.qualifications()) |> pad_int(3) |> length(3)
     ]
     |> combine()
   end
