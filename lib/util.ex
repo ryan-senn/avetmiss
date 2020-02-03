@@ -121,4 +121,10 @@ defmodule Avetmiss.Util do
       end
     end
   end
+
+  def combine(fields) do
+    fields
+    |> Enum.map(fn field -> WordSmith.remove_accents(field) end)
+    |> Enum.join("")
+  end
 end

@@ -164,4 +164,8 @@ defmodule Avetmiss.UtilTest do
       state_code("54")
     end
   end
+
+  test "accents are removed" do
+    assert combine(["Léo Jürgen árboles ça", ["pötætoēs"]]) == "Leo Jurgen arboles capotaetoes"
+  end
 end

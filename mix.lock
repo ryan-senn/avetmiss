@@ -1,3 +1,4 @@
 %{
   "typed_struct": {:hex, :typed_struct, "0.1.4", "25971ce73a8b336dedf2f80e4dafaab111af127ba4773955b66805c89e197f6a", [:mix], [], "hexpm"},
+  "word_smith": {:hex, :word_smith, "0.2.0", "f74548173431d3b4914eb2b0d89079ebda7a62f814877b051e3b3880695f4cf0", [:mix], [], "hexpm"},
 }

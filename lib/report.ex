@@ -25,7 +25,7 @@ defmodule Avetmiss.Report do
       data.facsimile_number |> length(20),
       data.email_address |> length(80)
     ]
-    |> Enum.join("")
+    |> combine()
   end
 
   def nat020_row(%Nat020{} = data) do
@@ -38,7 +38,7 @@ defmodule Avetmiss.Report do
       data.address_location_suburb_locality_town |> length(50),
       data.country_id |> length(4)
     ]
-    |> Enum.join("")
+    |> combine()
   end
 
   def nat030_row(%Nat030{} = data) do
@@ -47,7 +47,7 @@ defmodule Avetmiss.Report do
       data.program_name |> length(100),
       data.nominal_hours |> length(4)
     ]
-    |> Enum.join("")
+    |> combine()
   end
 
   def nat060_row(%Nat060{} = data) do
@@ -58,7 +58,7 @@ defmodule Avetmiss.Report do
       data.vet_flag |> bool_flag() |> length(1),
       data.nominal_hours |> length(4)
     ]
-    |> Enum.join("")
+    |> combine()
   end
 
   def nat080_row(%Nat080{} = data) do
@@ -87,7 +87,7 @@ defmodule Avetmiss.Report do
       data.statistical_area_level_1_id |> length(11),
       data.statistical_area_level_2_id |> length(9)
     ]
-    |> Enum.join("")
+    |> combine()
   end
 
   def nat085_row(%Nat085{} = data) do
@@ -110,7 +110,7 @@ defmodule Avetmiss.Report do
       data.email_address |> length(80),
       data.email_address_alternative |> length(80)
     ]
-    |> Enum.join("")
+    |> combine()
   end
 
   def nat090_row(%Nat090{} = data) do
@@ -118,7 +118,7 @@ defmodule Avetmiss.Report do
       data.client_id |> length(10),
       data.disability_type_id |> in_config(Config.disabilities()) |> length(2)
     ]
-    |> Enum.join("")
+    |> combine()
   end
 
   def nat100_row(%Nat100{} = data) do
@@ -126,7 +126,7 @@ defmodule Avetmiss.Report do
       data.client_id |> length(10),
       data.prior_education_achievement_id |> in_config(Config.qualifications()) |> length(3)
     ]
-    |> Enum.join("")
+    |> combine()
   end
 
   def nat120_row(%Nat120{} = data) do
@@ -159,7 +159,7 @@ defmodule Avetmiss.Report do
       data.scheduled_hours |> length(4),
       data.predominant_delivery_mode |> length(1)
     ]
-    |> Enum.join("")
+    |> combine()
   end
 
   def nat130_row(%Nat130{} = data) do
@@ -172,6 +172,6 @@ defmodule Avetmiss.Report do
       data.parchment_issue_date |> date() |> length(8),
       data.parchment_number |> length(25)
     ]
-    |> Enum.join("")
+    |> combine()
   end
 end

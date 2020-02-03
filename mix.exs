@@ -25,7 +25,8 @@ defmodule Avetmiss.MixProject do
 
   defp deps do
     [
-      {:typed_struct, "~> 0.1.4"}
+      {:typed_struct, "~> 0.1.4"},
+      {:word_smith, "~> 0.2.0"}
     ]
   end
 
