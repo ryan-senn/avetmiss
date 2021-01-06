@@ -68,7 +68,7 @@ defmodule Avetmiss.Report do
     [
       data.client_id |> length(10),
       data.name_for_encryption |> name_for_encryption() |> length(60),
-      data.highest_school_level_completed_id |> length(2),
+      data.highest_school_level_completed_id |> in_config(Config.school_levels()) |> pad_int(2) |> length(2),
       data.gender |> in_config(Config.genders()) |> gender_flag() |> length(1),
       data.date_of_birth |> date() |> length(8),
       data.postcode |> length(4),
