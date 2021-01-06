@@ -14,6 +14,15 @@ def deps do
 end
 ```
 
+## Official documents
+
+- AVETMISS VET Provider Collection
+specifications: https://www.ncver.edu.au/__data/assets/pdf_file/0022/62374/AVETMISS_VET_8_0_Collection_Specifications_-_PORTAL_VERSION.pdf
+
+- Data element definitions: https://www.ncver.edu.au/__data/assets/pdf_file/0022/62383/AVETMISS-Data-element-definitions-2_3-PORTAL-VERSION.pdf
+
+
+
 ## Usage
 
 ```elixir
