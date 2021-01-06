@@ -21,7 +21,15 @@ defmodule Avetmiss.Util do
   def name_for_encryption({name, nil}), do: "#{name}, "
   def name_for_encryption({name, ""}), do: "#{name}, "
 
-  def name_for_encryption({first_name, last_name}), do: "#{last_name}, #{first_name}"
+  def name_for_encryption({first_name, last_name}) do
+    name_for_encryption = "#{last_name}, #{first_name}"
+
+    # truncate to 60 characters if too long
+    #
+    # See page 99: https://www.ncver.edu.au/__data/assets/pdf_file/0022/62383/AVETMISS-Data-element-definitions-2_3-PORTAL-VERSION.pdf
+    # If the full name for encryption with commas and spaces exceeds 60 characters, enter client’s full name in the order above and truncate at 60 characters.
+    String.slice(name_for_encryption, 0, 60)
+  end
 
   def date(nil), do: ""
   def date(""), do: ""
@@ -72,7 +80,7 @@ defmodule Avetmiss.Util do
   def bool_flag(false), do: "N"
   def bool_flag("Y"), do: "Y"
   def bool_flag("N"), do: "N"
-  def bool_flag(value), do: raise FlagError, value
+  def bool_flag(value), do: raise(FlagError, value)
 
   def pad_int(int, _) when int == nil do
     ""
@@ -95,7 +103,7 @@ defmodule Avetmiss.Util do
       |> Enum.map(fn {k, _} -> k end)
       |> Enum.member?(key)
 
-    if is_valid?, do: key, else: raise ConfigError, {config, key}
+    if is_valid?, do: key, else: raise(ConfigError, {config, key})
   end
 
   def state_code(nil), do: ""
