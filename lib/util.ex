@@ -6,7 +6,10 @@ defmodule Avetmiss.Util do
   alias Avetmiss.Errors.{LengthError, DateError, ConfigError, FlagError, StateError}
 
   def length(string, length) do
-    string = to_string(string)
+    string =
+      string
+      |> to_string()
+      |> sanitise()
 
     cond do
       String.length(string) > length ->
@@ -141,9 +144,9 @@ defmodule Avetmiss.Util do
     end
   end
 
-  def combine(fields) do
-    fields
-    |> Enum.map(fn field -> WordSmith.remove_accents(field) end)
-    |> Enum.join("")
+  def sanitise(string) do
+    string
+    |> WordSmith.remove_accents()
+    |> WordSmith.squish()
   end
 end

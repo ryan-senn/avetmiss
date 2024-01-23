@@ -165,7 +165,7 @@ defmodule Avetmiss.UtilTest do
     end
   end
 
-  test "accents are removed" do
-    assert combine(["Léo Jürgen árboles ça", ["pötætoēs"]]) == "Leo Jurgen arboles capotaetoes"
+  test "accents and other unwanted characters are removed" do
+    assert sanitise("\n Léo Jürgen árboles     ça pötætoēß") == "Leo Jurgen arboles ca potaetoess"
   end
 end

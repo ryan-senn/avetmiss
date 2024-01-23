@@ -111,7 +111,7 @@ defmodule Avetmiss.ReportTest do
              address_building_property_name: "foobar",
              address_flat_unit_details: "level 19",
              address_street_number: "20",
-             address_street_name: "waterfront st",
+             address_street_name: "waterfront straße",
              survey_contact_status: "2",
              statistical_area_level_1_id: "3",
              statistical_area_level_2_id: "4"
@@ -119,7 +119,7 @@ defmodule Avetmiss.ReportTest do
              [
                "foo       ",
                "Bar, Foo                                                    ",
-               "9 ",
+               "09",
                "M",
                "26061995",
                "4061",
@@ -136,7 +136,7 @@ defmodule Avetmiss.ReportTest do
                "foobar                                            ",
                "level 19                      ",
                "20             ",
-               "waterfront st                                                         ",
+               "waterfront strasse                                                    ",
                "2",
                "3          ",
                "4        "
